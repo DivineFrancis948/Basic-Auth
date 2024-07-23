@@ -1,0 +1,3 @@
+1721498385030	Rename package 'com.example.demo.config.SecurityConfig'
+1721508096570	Encapsulate field 'password, ...'
+1721508102746	Encapsulate field 'email, ...'
