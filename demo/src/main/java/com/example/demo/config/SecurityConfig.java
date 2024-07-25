@@ -33,16 +33,24 @@ import com.example.demo.dao.UserDao;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 	
 
-	@Autowired
-	JwtAuthFilter jwtAuthFilter;
-	
-	@Autowired
-	UserDao userDao;
-	
+//	@Autowired
+//	JwtAuthFilter jwtAuthFilter;
+//
+//	@Autowired
+//	UserDao userDao;
+
+	private final JwtAuthFilter jwtAuthFilter;
+	private final UserDao userDao;
+
+
+	public SecurityConfig(JwtAuthFilter jwtAuthFilter, UserDao userDao) {
+		this.jwtAuthFilter = jwtAuthFilter;
+		this.userDao = userDao;
+	}
 //	private final AuthenticationProvider authenticationProvider;
 //	
 //	@Autowired
@@ -78,7 +86,7 @@ public class SecurityConfig {
 	
 	@Bean
 	@Order(SecurityProperties.BASIC_AUTH_ORDER)
-	public SecurityFilterChain securityFilterChain(HttpSecurity http,AuthenticationProvider authenticationProvider) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		 http
          .csrf(csrf -> csrf.disable())
@@ -89,7 +97,7 @@ public class SecurityConfig {
          .sessionManagement(session -> session
              .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
          )
-         .authenticationProvider(authenticationProvider)
+         .authenticationProvider(authenticationProvider())
          .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
      
      return http.build();
@@ -100,9 +108,9 @@ public class SecurityConfig {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();
 		
-		  return NoOpPasswordEncoder.getInstance();
+//		  return NoOpPasswordEncoder.getInstance();
 	}
 
 
@@ -122,6 +130,8 @@ public class SecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
+
+
 	
 	
 	}

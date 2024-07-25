@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 	
 	
@@ -75,10 +75,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 						new UsernamePasswordAuthenticationToken( userDetails, null,userDetails.getAuthorities());
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(authToken);
-				
+
 			}
 		}
-		
+
 		filterChain.doFilter(request, response);
 	}
 

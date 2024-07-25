@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,14 +19,14 @@ private final static  List<UserDetails> APPLCATION_USERS =  Arrays.asList(
 			
 			new User(
 					"df@gmail.com",
-					"1234",
-//					"$2a$10$mRxtycpRMFlWqRliJ6YXKuilIowR9024EiYPBy7pzbUcV/nVp3wbG",
+//					"1234",
+					new BCryptPasswordEncoder().encode("1234"),
 					Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))
 					
 					),
 			new User(
 					"kf@gmail.com",
-					"1234",
+					new BCryptPasswordEncoder().encode("1234"),
 					Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"))
 					
 					)

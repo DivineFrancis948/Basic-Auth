@@ -1,0 +1,27 @@
+### POST request to example server
+POST http://localhost:8080/api/auth/auth
+Content-Type: application/json
+
+{
+    "email":"df@gmail.com",
+    "password":"1234"
+}
+
+
+
+####
+#GET http://localhost:8080/greet/hi
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlJPTEVfQURNSU4iLCJzdWIiOiJkZkBnbWFpbC5jb20iLCJpYXQiOjE3MjE4MjQ0NzQsImV4cCI6MTcyMTgyNjI3NH0.viO6PMke9LYVYHxLi6FMRw1UPIYu3udyRdrOlNGvFs0
+#
+#
+#
+#
+#
+####
+#GET http://localhost:8080/greet/bye
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlJPTEVfQURNSU4iLCJzdWIiOiJkZkBnbWFpbC5jb20iLCJpYXQiOjE3MjE4MjQ0NzQsImV4cCI6MTcyMTgyNjI3NH0.viO6PMke9LYVYHxLi6FMRw1UPIYu3udyRdrOlNGvFs0
+#
+#
+###
