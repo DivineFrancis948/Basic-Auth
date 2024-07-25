@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,11 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtils {
 
 
-    public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+    @Value("${jwt.secret}")
+    private String SECRET;
+
+    @Value("${jwt.expiry}")
+    private Long EXPIRY;
 
 
     public String extractUsername(String token) {
@@ -73,12 +78,13 @@ public class JwtUtils {
                  .collect(Collectors.joining(","));
     	 
     	 claims.put("roles",roles);
-    	 
+
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .setExpiration(new Date(System.currentTimeMillis()+1000*EXPIRY))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 

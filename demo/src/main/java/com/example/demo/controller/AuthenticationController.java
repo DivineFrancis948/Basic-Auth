@@ -27,16 +27,7 @@ import org.springframework.web.context.annotation.RequestScope;
 //@NoArgsConstructor
 public class AuthenticationController {
 	
-//	@Autowired
-//	AuthenticationManager authenticationManager;
-////	
-//	@Autowired
-//	UserDao userDao;
-//	UserDetailsService userDetailsService;
-////	
-//	@Autowired
-//	JwtUtils jwtUtils;
-	
+
 	
 	private final AuthenticationManager authenticationManager;
 	private final UserDao userDao;
@@ -61,7 +52,7 @@ public class AuthenticationController {
 
 
 
-		System.out.println((request.getEmail()+"<---> "+request.getPassword()));
+//		System.out.println((request.getEmail()+"<---> "+request.getPassword()));
 
 //			authenticationManager.authenticate(
 //					new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
